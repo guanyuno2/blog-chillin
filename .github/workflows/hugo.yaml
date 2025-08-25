@@ -63,6 +63,14 @@ jobs:
           echo "Go: $(go version)"
           echo "Hugo: $(hugo version)"
           echo "Node.js: $(node --version)"
+      - name: Verify theme installation
+        run: |
+          echo "=== Theme Directory ==="
+          ls -la ./themes/DoIt/
+          echo "=== Theme Assets ==="
+          ls -la ./themes/DoIt/assets/css/
+          echo "=== Theme Layouts ==="
+          ls -la ./themes/DoIt/layouts/
       - name: Install Node.js dependencies
         run: |
           [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
@@ -77,13 +85,29 @@ jobs:
           key: hugo-${{ github.run_id }}
           restore-keys:
             hugo-
+      - name: Clear Hugo cache
+        run: |
+          rm -rf ${{ runner.temp }}/hugo_cache
+          rm -rf ./resources/_gen
+          rm -rf ./public
       - name: Build the site
         run: |
           hugo \
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/" \
-            --cacheDir "${{ runner.temp }}/hugo_cache"
+            --cacheDir "${{ runner.temp }}/hugo_cache" \
+            --verbose
+      - name: Debug build output
+        run: |
+          echo "=== Build Directory Contents ==="
+          ls -la ./public
+          echo "=== CSS Files ==="
+          find ./public -name "*.css" -type f
+          echo "=== JS Files ==="
+          find ./public -name "*.js" -type f
+          echo "=== Theme Files ==="
+          ls -la ./themes/DoIt/assets/css/
       - name: Cache save
         id: cache-save
         uses: actions/cache/save@v4
