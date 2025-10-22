@@ -89,6 +89,7 @@ Ok! Looks cool now!
 ---
 ## Configure kube-proxy for MetalLB compatibility
 k0s doesn’t come with a built-in load balancer, so I have to set up a real one myself. I decided to go with MetalLB
+
 Enable IPVS mode and strictARP
 ```sh
 export EDITOR=nano
@@ -141,7 +142,7 @@ kubectl rollout restart deployment/controller -n metallb-system
 kubectl rollout restart daemonset/speaker -n metallb-system
 ```
 ### Configure IP Address Pool
-Create a configuration file for MetalLB
+Create a configuration file for MetalLB: `metallb-config.yaml`
 ```yml
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
