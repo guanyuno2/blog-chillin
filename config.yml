@@ -128,11 +128,11 @@ params:
 
   assets:
     disableHLJS: true
-    favicon: "favicon.svg"
-    favicon16x16: "favicon.svg"
-    favicon32x32: "favicon.svg"
-    apple_touch_icon: "favicon.svg"
-    safari_pinned_tab: "favicon.svg"
+    favicon: "https://tyvan.dev/favicon.svg"
+    favicon16x16: "https://tyvan.dev/favicon.svg"
+    favicon32x32: "https://tyvan.dev/favicon.svg"
+    apple_touch_icon: "https://tyvan.dev/favicon.svg"
+    safari_pinned_tab: "https://tyvan.dev/favicon.svg"
 
   # cover:
   #     hidden: true # hide everywhere but not in structured data
