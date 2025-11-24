@@ -44,8 +44,8 @@ languages:
         - name: Tags
           url: tags/
           weight: 10
-        - name: WiKi
-          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
+        - name: CV
+          url: https://static.tyvan.dev/resume-update-1.pdf
 
 
 outputs:
